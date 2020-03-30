@@ -1,23 +1,21 @@
 language: node_js
 node_js: stable
-
 cache:
   directories:
   - node_modules
-
 install:
-  - npm install
-
+- npm install
 script:
-  - npm run build
-
+- npm run build
 branches:
   only:
-    - master
-
+  - master
 deploy:
   provider: pages
   skip_cleanup: true
-  github_token: $GH_TOKEN # Set in travis-ci.org dashboard
+  github_token: "$GITHUB_TOKEN"
   on:
     branch: master
+env:
+  global:
+    secure: jdl8aXwTzmtMX0XXZQEStUu9m6LHcgG6B80MDcWdFokuNWzfhTCRYhpDFcbkwJ05k94EPuiYbcMkIxZGrc3U77ZdAl4BnWjsWZjyRZwRhNCKuSoDJ9LQUNCq95iNNO3jHkdWyRoV1mNKG0Q6kOMOKdaszZf0p3/BlTWfWAYHmVTzR8oln6a47QcdswoeOeDBJ9L5o3o7x0b9KDyIbz9onul3MGdk333PNTnU6BdikhcyJYl9ZAfmjLDDov4YYuxG1cMGakskXi+lUUotRX2osVbn3ZMmWmLM7+apJuoLkAWQ53HCbAg6541PZdcCxLMK2W6uFt7NwyOIgBe9BkA32P0LlhUnOgqGatuUp/UQuQ4sGK/eWfMa+ScUz8jtiG0pn/czeSKC262oXUYpOCGUgNyrCxaRxxuI5qCCx7Ctc9seYy9QyF0Cq8HIvoWZjAPwEZ8fhBIblhEce7WJNJx3AdH7B9Li1bwKvff4p7JT10tbNT5QARdohcFAXdDUuK3ayIdJkEN6HrjkM0z5yHlCLdjrU3092VvS2J/vl29iOkz/0Kxwk1jkCiTVfvrelJOZvuFbQV5jqYFTnEIZn1F83quso/XIiToOpnQLiCFwXLS7SAqH+Z91kn3xl59mkfCHmFBv8CGJ0ZGfg3tpTYwKaeCZof3mqXSdE007RoCVH6Y=
