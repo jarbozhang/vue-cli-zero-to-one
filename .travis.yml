@@ -5,37 +5,20 @@ branches:
 language: node_js
 node_js: stable
 
-sudo: false
-
-cache:
-  directories:
-    - node_modules
-
-addons:
-  apt:
-    packages:
-      - xvfb
-
 install:
-  - export DISPLAY=':99.0'
-  - Xvfb: 99 -screen 0 1024x768x24 > /dev/null 2> &1 &
   - npm install
 
-before_script:
-  - git config user.name "jarbo.zhang"
-  - git config user.email "jarbo.zhang@gmail.com"
-  - git clone --branch gh-pages https://${GH_REF} dist
-
 script:
-  - npm test
+  - npm run build
 
 after_success:
-  - npm run build
-  - cd dist
+  - cd ./dist
   - cp index.html 404.html
-  - git add --all .
-  - git commit --message "Automatically update from travis-ci"
-  - git push --quiet --force  "https://${GH_TOKEN}@${GH_REF}" gh-pages:gh-pages
+  - git git config --global user.name "jarbo.zhang"
+  - git config --global user.email 'jarbo.zhang@gmail.com'
+  - git add .
+  - git commit -m 'Automatically update from travis-ci'
+  - git push --quiet --force  'https://${GH_TOKEN}@${GH_REF}' gh-pages:gh-pages
 
 env:
   global:
