@@ -23,5 +23,4 @@ after_success:
 env:
   global:
     - GH_REF: github.com/jarbozhang/vue-cli-zero-to-one
-    - GH_TOKEN: df1a85dba6648b8ea8571d4dd7ab223939660a7a
-
+    - GH_TOKEN: 3969b11f3fe448b5b27516a1d6d953f66941acea
