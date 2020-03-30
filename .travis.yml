@@ -1,3 +1,44 @@
+branches:
+  only:
+    - develop
+
 language: node_js
-node_js:
-  - 7
+node_js: stable
+
+sudo: false
+
+cache:
+  directories:
+    - node_modules
+
+addons:
+  apt:
+    packages:
+      - xvfb
+
+install:
+  - export DISPLAY=':99.0'
+  - Xvfb: 99 -screen 0 1024x768x24 > /dev/null 2> &1 &
+  - npm install
+
+before_script:
+  - git config user.name "jarbo.zhang"
+  - git config user.email "jarbo.zhang@gmail.com"
+  - git clone --branch gh-pages https://${GH_REF} dist
+
+script:
+  - npm test
+
+after_success:
+  - npm run build
+  - cd dist
+  - cp index.html 404.html
+  - git add --all .
+  - git commit --message "Automatically update from travis-ci"
+  - git push --quiet --force  "https://${GH_TOKEN}@${GH_REF}" gh-pages:gh-pages
+
+env:
+  global:
+    - GH_REF: github.com/jarbozhang/vue-cli-zero-to-one
+    - GH_TOKEN: df1a85dba6648b8ea8571d4dd7ab223939660a7a
+
