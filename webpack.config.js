@@ -2,6 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
 
 module.exports = {
   mode: 'development',
@@ -18,7 +19,11 @@ module.exports = {
       favicon: path.resolve(__dirname, './public/favicon.ico'),
       templateParameters: {BASE_URL: '/'}
     }),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new BundleAnalyzerPlugin({
+      analyzerHost: '127.0.0.1',
+      analyzerPort: 8888
+    })
   ],
   module: {
     rules: [
